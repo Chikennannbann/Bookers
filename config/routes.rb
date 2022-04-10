@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
     root to: 'homes#top'
     # get 'homes/top'ではなく.com/でトップ画面を表示するルーティング
-  get 'index' => 'books#index'
+  get 'books' => 'books#index'
   post 'books' => 'books#create'
-  get 'show' => 'books#show'
-  get 'edit' => 'books#edit'
+  post 'create' => 'books#create'
+  get ':id' => 'books#show', as: 'book'
+  get ':id/edit' => 'books#edit', as: 'edit_list'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

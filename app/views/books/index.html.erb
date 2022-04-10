@@ -1,5 +1,25 @@
 <h1>Books</h1>
+
 <body>
+<table>
+  <tr>
+    <th><h3>Title</h3></th>
+    <th><h3>Body</h3></th>
+  </tr>
+
+  <tr>
+    <% @books.each do |book| %>
+  <td><%= book.title %></td>
+
+  <td><%= book.body %></td>
+
+  <td><%= link_to "show", "/#{book.id}"%>
+     edit destroy</td>
+  <% end %>
+  </tr>
+
+</table>
+
   <div class=></div>
 
   <div class="new">
@@ -15,3 +35,4 @@
     <% end %>
   </div>
 </body>
+
