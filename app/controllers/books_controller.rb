@@ -6,11 +6,15 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    @books = Book.all
     if @book.save
      redirect_to book_path(book.id)
      flash[:notice] = "Book was successfully created."
     else
-     render :index
+     render:index
+    #  renderで直接ビューに行ってしまうため@books = Book.allが反映されていなかった。
+    # バリデーションは空かどうかであるから@booksの情報が抜けていてもエラーのはならなかった。
+    # この場合@booksはelse内でもok
     end
   end
 
@@ -23,10 +27,13 @@ class BooksController < ApplicationController
   end
 
   def update
-   book = Book.find(params[:id])
-   book.update(book_params)
-   redirect_to book_path(book.id)
-   flash[:notice] = "Book was successfully updated."
+    @book = Book.find(params[:id])
+   if @book.update(book_params)
+    redirect_to book_path(@book.id)
+    flash[:notice] = "Book was successfully updated."
+   else
+    render:edit
+   end
   end
 
   def destroy

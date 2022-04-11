@@ -36,7 +36,7 @@
   <div class="new">
     <h3>New book</h3>
     <% if @book.errors.any? %>
-     <%= @book.errors.count %>errors prohibited this book being saved:
+     <%= @book.errors.count %>error prohibited this book being saved:
      <ul>
        <% @book.errors.full_messages.each do |message| %>
        <li><%= message %></li>
